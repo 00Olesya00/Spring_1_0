@@ -5,12 +5,13 @@
          id="WebApp_ID" version="4.0">
 
   <display-name>Archetype Created Web Application</display-name>
-<servlet>
-  <servlet-name>Start</servlet-name>
-  <servlet-class>Product.Serv.ProductServlet</servlet-class>
-</servlet>
+  <servlet>
+    <servlet-name>Start</servlet-name>
+    <servlet-class>Product.Serv.ProductServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Start</servlet-name>
     <url-pattern>/start</url-pattern>
   </servlet-mapping>
+
 </web-app>
