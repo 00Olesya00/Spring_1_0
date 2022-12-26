@@ -11,8 +11,8 @@ import java.io.IOException;
 
 
 @WebServlet("/start")
-public class ProductServlet extends HttpServlet {
-    public static Logger logger = LoggerFactory.getLogger(ProductServlet.class);
+public class ProductServlet_Uzer extends HttpServlet {
+    public static Logger logger = LoggerFactory.getLogger(ProductServlet_Uzer.class);
 
     @Override
     protected void doGet(HttpServletRequest reg, HttpServletResponse resp) throws SecurityException, IOException {
