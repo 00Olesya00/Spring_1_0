@@ -6,10 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 
@@ -57,6 +54,7 @@ public class ProductServlet extends HttpServlet {
             String name = reg.getParameter("name");
             UserInfo info = new UserInfo(login, name); //получем логин и имя
 
+//             resp.addCookie(new Cookie("userInfo"));
             HttpSession session = reg.getSession();
             session.setAttribute("userInfo", info);
             resp.getWriter().printf("<html><body>OK</body></html>");
