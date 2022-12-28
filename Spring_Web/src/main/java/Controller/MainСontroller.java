@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class Main_controller {
-    private Product_Repository product_Repository;
+ public class Maincontroller {
+    private ProductRepository productRepository;
 
     @Autowired
-    public void MainController(Product_Repository product_Repository) {
-        this.product_Repository = product_Repository;
+    public void MainController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+
     }
 
     @GetMapping("/products")
     public String showProductsPage(Model model) {
-        model.addAttribute("products", product_Repository.getAllProducts());
+        model.addAttribute("products", productRepository.getAllProducts());
         return "products_page";
     }
 
@@ -31,7 +32,7 @@ public class Main_controller {
 
     @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String addProduct(Product product){
-        product_Repository.addProduct(product);
+        productRepository.addProduct(product);
         return "redirect:/products";
     }
 }

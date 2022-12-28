@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Product_Repository {
+public class ProductRepository {
     private List<Product> products;
 
     @PostConstruct
