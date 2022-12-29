@@ -1,7 +1,7 @@
 package Controller;
 
-import com.example.Products.Product;
 import com.example.Products.ProductRepository;
+import com.example.Products.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,18 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
- public class MainController {
-    private ProductRepository productRepository;
+public class MainController {
+    private ProductRepository product_Repository;
 
     @Autowired
-    public void MainController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-
+    public void MainController(ProductRepository product_Repository) {
+        this.product_Repository = product_Repository;
     }
 
     @GetMapping("/products")
     public String showProductsPage(Model model) {
-        model.addAttribute("products", productRepository.getAllProducts());
+        model.addAttribute("products", product_Repository.getAllProducts());
         return "products_page";
     }
 
@@ -33,7 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
     @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String addProduct(Product product){
-        productRepository.addProduct(product);
+        product_Repository.addProduct(product);
         return "redirect:/products";
     }
 }
