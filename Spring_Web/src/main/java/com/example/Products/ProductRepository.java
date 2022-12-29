@@ -1,13 +1,13 @@
-package Controller;
+package com.example.Products;
 
-import com.example.Spring_web.Product;
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Component
 public class ProductRepository {
     private List<Product> products;
 
@@ -22,7 +22,7 @@ public class ProductRepository {
     }
 
     public Product findById(int id){
-        return products.stream().filter(p -> p.getId()==id).findFirst().orElseThrow(()->new RuntimeException("product not found"));
+        return products.stream().filter(p -> p.getId()==id).findFirst().orElseThrow(()->new RuntimeException("Продукт отсутствует"));
     }
 
     public List<Product> getAllProducts() {
@@ -30,5 +30,6 @@ public class ProductRepository {
     }
 
     public void addProduct(Product product) {
+        products.add(product);
     }
 }

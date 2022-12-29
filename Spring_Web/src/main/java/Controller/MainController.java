@@ -1,6 +1,7 @@
 package Controller;
 
-import com.example.Spring_web.Product;
+import com.example.Products.Product;
+import com.example.Products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
- public class Maincontroller {
+ public class MainController {
     private ProductRepository productRepository;
 
     @Autowired
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
     @GetMapping("/add-form")
     public String addProductsPage() {
-        return "add_product";
+        return "addProduct";
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.Spring_web;
+package com.example.Products;
 public class Product {
     private int id;
     private String title;
@@ -26,6 +26,8 @@ public class Product {
     public double getCost() {
         return  cost;
     }
+
+
 }
 
 
