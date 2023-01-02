@@ -14,22 +14,25 @@ public class ProductRepository {
     @PostConstruct
     public void init(){
         products = new ArrayList<>(Arrays.asList());
-        products.add(new Product(1,"Сахар",90.04));
-        products.add(new Product(2,"Картофель",28.55));
-        products.add(new Product(3,"Гречневая мука",67.78));
-        products.add(new Product(4,"Рис длиннозерновой",119.40));
-        products.add(new Product(5,"Капуста",18.25));
-    }
-
-    public Product findById(int id){
-        return products.stream().filter(p -> p.getId()==id).findFirst().orElseThrow(()->new RuntimeException("Продукт отсутствует"));
+        new Product(1L,"Сахар",90.04);
+        new Product(2L,"Картофель",28.55);
+     new Product(3L,"Гречневая мука",67.78);
+       new Product(4L,"Рис длиннозерновой",119.40);
+        new Product(5L,"Капуста",18.25);
     }
 
     public List<Product> getAllProducts() {
         return new ArrayList<>(products);
     }
-
     public void addProduct(Product product) {
         products.add(product);
     }
-}
+
+            public void deleteProductById(Long id) {
+                products.removeIf(product -> product.getId().equals(id));
+            }
+
+            public Product findProductById(Long id) {
+                return products.stream().filter(product -> product.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("product not found"));
+            }
+        }
