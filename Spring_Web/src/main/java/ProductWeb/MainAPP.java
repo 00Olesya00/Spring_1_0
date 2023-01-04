@@ -1,28 +1,44 @@
 
 package ProductWeb;
+
+import ProductWeb.repository.ConsumerDao;
+import ProductWeb.repository.ConsumerDaoImpl;
+import ProductWeb.repository.ProductDaOImP;
+import ProductWeb.repository.ProductDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.util.List;
+import java.util.Scanner;
 
 public class MainAPP {
     public static void main(String[] args) {
-        SessionFactoryUtils sessionFactoryUtils = new SessionFactoryUtils();
-        sessionFactoryUtils.init();
-        try {
-            ProductDao productDao = new productDAoImP(sessionFactoryUtils);
-            List<Product> productList = productDao.findAll();
-            System.out.println(productList);
-            Product milk = new Product("Молоко", 20);
-            Product meat = new Product("Мясо", 400);
-            System.out.println(productDao.saveOrUpdate(milk)); //молоко уже есть, обновится цена
-            System.out.println(productDao.saveOrUpdate(meat)); // Мяса - добавится
-            Product pancake = productDao.findById(4L);
-            System.out.println(pancake);
-            productDao.deleteById(4L);
-            List<Product> All_products = productDao.findAll();
-            System.out.println(All_products);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            sessionFactoryUtils.shutdown();
+        ApplicationContext context = new AnnotationConfigApplicationContext("ProductWeb");
+        ProductDao productDao = context.getBean(ProductDaOImP.class);
+        ConsumerDao consumerDao = context.getBean(ConsumerDaoImpl.class);
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("введите команду");
+            String in = sc.nextLine();
+            String[] token = in.split(" ");
+            if (token[0].equals("getProduct")) {
+                Product product = productDao.findById((long) Integer.parseInt(token[1].trim()));
+                System.out.println(product);
+            }
+            if (token[0].equals("getConsumer")) {
+                Consumer consumer = consumerDao.findConsumerById((long) Integer.parseInt(token[1].trim()));
+                System.out.println(consumer);
+            }
+            if (token[0].equals("getProductsByConsumerId")) {
+                List<Product> products = consumerDao.getProductsByConsumerId((long) Integer.parseInt(token[1].trim()));
+                System.out.println(products);
+            }
+            if (token[0].equals("getConsumersByProductsId")) {
+                List<Consumer> consumers = productDao.getConsumersByProductsId((long) Integer.parseInt(token[1].trim()));
+                System.out.println(consumers);
+            }
+            if (token[0].equals("exit")) break;
         }
     }
 }
