@@ -12,12 +12,14 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying
-    @Query(value = "update Product p set p.cost = p.cost + :price where p.id= :id")
-    void changeCostById(@Param(value = "id") Long id, @Param(value = "price") Integer cost);
+    @Query(value = "update Product p set p.cost = p.cost + :cost where p.id= :id")
+    void changeCostById(@Param(value = "id") Long id, @Param(value = "cost") Integer cost);
+
 
     List<Product> findAllByCostGreaterThan(Integer cost);
 
     List<Product> findAllByCostLessThan(Integer cost);
 
     List<Product> findAllByCostBetween(Integer min, Integer max);
+
 }

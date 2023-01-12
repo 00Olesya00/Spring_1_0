@@ -20,14 +20,20 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/delete/{id}")
-    public void deleteProductById(@PathVariable Long id) {
+    @DeleteMapping("/delete")
+    public void deleteProductById(@RequestParam Long id) {
         productService.deleteProductById(id);
     }
 
     @GetMapping("/product/{id}")
     public Product findById(@PathVariable Long id) {
         return productService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+    }
+
+    @GetMapping("/filter")
+    public List<Product> findById(@RequestParam(defaultValue = "0") Integer minCost, @RequestParam(defaultValue = "2147483647") Integer maxCost) {
+        return productService.findAllByCostBetween(minCost, maxCost);
     }
 
     @GetMapping("/change_cost")
@@ -35,11 +41,11 @@ public class ProductController {
         productService.changeCostById(productId, delta);
     }
 
-    @PostMapping(value = "/add")
-    public String addProduct(Product product) {
-        productService.addProduct(product);
-        return "redirect:/";
+    @PostMapping("/add")
+    public Product addProduct(@RequestBody Product product) {
+        return productService.addProduct(product);
     }
+
 
     @GetMapping("/find_min")
     public List<Product> findByMinCost(@RequestParam(name = "min") Integer min) {
