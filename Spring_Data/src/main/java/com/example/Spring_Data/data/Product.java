@@ -12,6 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "all_products")
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,7 @@ public class Product {
     private String title;
     @Column(name = "cost")
     private Integer cost;
+
 
     @Override
     public boolean equals(Object o) {
