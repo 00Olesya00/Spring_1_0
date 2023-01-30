@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS All_products
     title VARCHAR(255)
 
 );
-INSERT INTO  all_products (title, cost) VALUES ('Молоко', 150),('Бананы', 80), ('Яблоки', 90), ('Рис', 75),('Виноград', 150);
+INSERT INTO  all_products (title, cost) VALUES ('Молоко', 150),
+                          ('Бананы', 80), ('Яблоки', 90),
+                          ('Рис', 75),('Виноград', 150);
 
 
 /*DROP TABLE  consumers;
