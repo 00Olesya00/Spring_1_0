@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
 <div class="container" ng-controller="productController">
     <h3>Список товаров</h3>
     <table class="table table-hover">
@@ -30,14 +31,17 @@
                 <button class="btn btn-primary" ng-click="changeCost(p.id, -1)">-</button>
                 {{p.cost}}
                 <button class="btn btn-primary" ng-click="changeCost(p.id, 1)">+</button>
+
             </td>
             <td>
                 <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
             </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addToCart(p.id)">Добавить в корзину</button>
+            </td>
         </tr>
         </tbody>
     </table>
-
     <div class="add">
         <div class="container_form">
             <h4>ADD Product</h4>
@@ -49,7 +53,6 @@
             <button class="btn btn-primary" ng-click="addProduct(product)"> Добавить</button>
         </div>
     </div>
-
     <p></p>
     <h3>Отфильтровать товары</h3>
     <form novalidate ng-submit="loadProducts()">
@@ -61,6 +64,26 @@
         <p></p>
         <button type="submit" class="btn btn-primary">отфильтровать</button>
     </form>
+
+    <p></p>
+    <h3>Товары в корзине</h3>
+    <table class="table table-hover">
+        <tr>
+            <td>ID</td>
+            <td>Наименование товара</td>
+            <td>Цена</td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="p in CartList">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.cost}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProductFromCart(p.id)">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

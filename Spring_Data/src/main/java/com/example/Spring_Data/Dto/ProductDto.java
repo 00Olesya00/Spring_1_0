@@ -1,11 +1,12 @@
 package com.example.Spring_Data.Dto;
 
-import com.example.Spring_Data.data.Product;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProductDto {
     private Integer id;
 
@@ -13,9 +14,4 @@ public class ProductDto {
 
     private Integer cost;
 
-    public ProductDto(Product product) {
-        this.id = product.getId();
-        this.title = product.getTitle();
-        this.cost = product.getCost();
-    }
 }
