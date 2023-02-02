@@ -1,4 +1,4 @@
-package com.example.Spring_Data.Dto;
+package com.example.Spring_Data.Prodoct.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

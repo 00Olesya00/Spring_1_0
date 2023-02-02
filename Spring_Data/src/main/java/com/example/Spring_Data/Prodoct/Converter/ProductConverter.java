@@ -1,8 +1,8 @@
-package com.example.Spring_Data.Converter;
+package com.example.Spring_Data.Prodoct.Converter;
 
 
-import com.example.Spring_Data.Dto.ProductDto;
-import com.example.Spring_Data.data.Product;
+import com.example.Spring_Data.Prodoct.Dto.ProductDto;
+import com.example.Spring_Data.Prodoct.Product;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,6 +1,6 @@
-package com.example.Spring_Data.controllers;
+package com.example.Spring_Data.Prodoct.controllers;
 
-import com.example.Spring_Data.Dto.ProductDto;
+import com.example.Spring_Data.Prodoct.Dto.ProductDto;
 import com.example.Spring_Data.stock.Cart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
