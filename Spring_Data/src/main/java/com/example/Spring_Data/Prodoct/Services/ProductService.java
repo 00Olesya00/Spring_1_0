@@ -1,8 +1,8 @@
-package com.example.Spring_Data.Services;
+package com.example.Spring_Data.Prodoct.Services;
 
-import com.example.Spring_Data.Specifications.ProductSpecification;
-import com.example.Spring_Data.data.Product;
-import com.example.Spring_Data.repository.ProductRepository;
+import com.example.Spring_Data.Prodoct.Specifications.ProductSpecification;
+import com.example.Spring_Data.Prodoct.Product;
+import com.example.Spring_Data.Prodoct.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

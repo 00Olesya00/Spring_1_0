@@ -1,9 +1,9 @@
-package com.example.Spring_Data.controllers;
+package com.example.Spring_Data.Prodoct.controllers;
 
-import com.example.Spring_Data.Converter.ProductConverter;
-import com.example.Spring_Data.Dto.ProductDto;
-import com.example.Spring_Data.Services.ProductService;
-import com.example.Spring_Data.data.Product;
+import com.example.Spring_Data.Prodoct.Converter.ProductConverter;
+import com.example.Spring_Data.Prodoct.Dto.ProductDto;
+import com.example.Spring_Data.Prodoct.Services.ProductService;
+import com.example.Spring_Data.Prodoct.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
-package com.example.Spring_Data.Specifications;
+package com.example.Spring_Data.Prodoct.Specifications;
 
-import com.example.Spring_Data.data.Product;
+import com.example.Spring_Data.Prodoct.Product;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 

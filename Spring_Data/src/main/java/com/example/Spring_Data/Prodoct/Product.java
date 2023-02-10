@@ -1,4 +1,4 @@
-package com.example.Spring_Data.data;
+package com.example.Spring_Data.Prodoct;
 
 import jakarta.persistence.*;
 import lombok.*;

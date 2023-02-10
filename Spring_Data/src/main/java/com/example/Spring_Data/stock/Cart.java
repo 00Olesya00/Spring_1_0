@@ -1,8 +1,8 @@
 package com.example.Spring_Data.stock;
 
-import com.example.Spring_Data.Converter.ProductConverter;
-import com.example.Spring_Data.Dto.ProductDto;
-import com.example.Spring_Data.repository.ProductRepository;
+import com.example.Spring_Data.Prodoct.Converter.ProductConverter;
+import com.example.Spring_Data.Prodoct.Dto.ProductDto;
+import com.example.Spring_Data.Prodoct.repository.ProductRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
