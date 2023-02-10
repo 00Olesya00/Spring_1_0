@@ -1,6 +1,7 @@
 package com.example.Spring_Data.Users.Configs;
 
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import ru.alex.services.UserService;
+    import com.example.Spring_Data.Users.Services.UserService;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -33,7 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
-
+//                .and()
+//                .sessionManagement()
+//                .maximumSessions(1)
+//                .maxSessionsPreventsLogin(true);
     }
 
     @Bean
