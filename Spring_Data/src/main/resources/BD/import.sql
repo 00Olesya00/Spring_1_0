@@ -1,18 +1,20 @@
 CREATE DATABASE IF NOT EXISTS productsdb;
 
 USE productsdb;
+# alter table all_products
+#     change price cost int null;
 /*DROP TABLE  All_products;*/
 CREATE TABLE IF NOT EXISTS All_products
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    price INT,
+    cost INT,
     title VARCHAR(255)
 
 );
-INSERT INTO  all_products (title, price) VALUES ('Молоко', 150),('Бананы', 80), ('Яблоки', 90), ('Рис', 75),('Виноград', 150);
+INSERT INTO  all_products (title, cost) VALUES ('Молоко', 150),('Бананы', 80), ('Яблоки', 90), ('Рис', 75),('Виноград', 150);
 
 
-DROP TABLE  consumers;
+/*DROP TABLE  consumers;
 CREATE DATABASE IF NOT EXISTS consumers;
 
 CREATE TABLE IF NOT EXISTS consumers
@@ -27,7 +29,7 @@ INSERT INTO consumers (name) VALUES ('Виктор'),('Алексей'),('Вла
 
 CREATE DATABASE IF NOT EXISTS consumers_products_stok;
 
-#DROP TABLE  consumers_products;
+DROP TABLE  consumers_products;
 
 CREATE TABLE IF NOT EXISTS consumers_products
    (

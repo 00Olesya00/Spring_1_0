@@ -1,14 +1,19 @@
-package ProductWeb;
+package ProductWeb.repository;
 
+import ProductWeb.Consumer;
+import ProductWeb.Product;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 
-public class productDAoImP implements ProductDao {
+@Component
+public class ProductDaOImP implements ProductDao {
     private SessionFactoryUtils sessionFactoryUtils;
 
-    public productDAoImP (SessionFactoryUtils sessionFactoryUtils) {
+    @Autowired
+    public ProductDaOImP(SessionFactoryUtils sessionFactoryUtils) {
         this.sessionFactoryUtils = sessionFactoryUtils;
     }
 
@@ -26,9 +31,9 @@ public class productDAoImP implements ProductDao {
     public List<Product> findAll() {
         try (Session session = sessionFactoryUtils.getSession()) {
             session.beginTransaction();
-            List<Product> All_products = session.createQuery("select p from Product p", Product.class).getResultList();
+            List<Product> products = session.createQuery("select p from Product p", Product.class).getResultList();
             session.getTransaction().commit();
-            return  All_products;
+            return products;
         }
     }
 
@@ -46,18 +51,21 @@ public class productDAoImP implements ProductDao {
     public Product saveOrUpdate(Product product) {
         try (Session session = sessionFactoryUtils.getSession()) {
             session.beginTransaction();
-            try {
-                Product oldProduct = session.createQuery("select oldProduct from Product oldProduct where oldProduct.title = :title", Product.class)
-                        .setParameter("title", product.getTitle())
-                        .getSingleResult();
-                oldProduct.setPrice(product.getPrice());
-                session.getTransaction().commit();
-                return oldProduct;
-            } catch (NoResultException e) {
-                session.save(product);
-                session.getTransaction().commit();
-                return product;
-            }
+            session.saveOrUpdate(product);
+            session.getTransaction().commit();
+            return product;
+        }
+    }
+
+    @Override
+    public List<Consumer> getConsumersByProductsId(Long id) {
+        try (Session session = sessionFactoryUtils.getSession()) {
+            session.beginTransaction();
+            Product product = session.get(Product.class, id);
+            List<Consumer> consumers = product.getConsumers();
+            consumers.size();
+            session.getTransaction().commit();
+            return consumers;
         }
     }
 }
