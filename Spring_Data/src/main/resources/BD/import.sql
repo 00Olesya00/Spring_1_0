@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS productsdb;
+    CREATE DATABASE IF NOT EXISTS productsdb;
 
 USE productsdb;
 # alter table all_products
@@ -14,6 +14,43 @@ CREATE TABLE IF NOT EXISTS All_products
 INSERT INTO  all_products (title, cost) VALUES ('Молоко', 150),
                           ('Бананы', 80), ('Яблоки', 90),
                           ('Рис', 75),('Виноград', 150);
+
+    CREATE TABLE users (
+                       id                    INT NOT NULL AUTO_INCREMENT,
+                       username              VARCHAR(30) NOT NULL unique,
+                       password              VARCHAR(80) NOT NULL,
+                       email                 VARCHAR(50) unique,
+                       PRIMARY KEY (id)
+);
+
+    CREATE TABLE roles (
+                           id                    serial,
+                           name                  VARCHAR(50) NOT NULL,
+                           primary key (id)
+    );
+
+    CREATE TABLE users_roles (
+                                 user_id             INT NOT NULL AUTO_INCREMENT,
+                                 role_id             INT NOT NULL ,
+                                 PRIMARY KEY (user_id, role_id),
+                                 foreign key (user_id) references users (id),
+                                 foreign key (role_id) references roles (id)
+    );
+
+    INSERT INTO roles (name)
+    VALUES
+        ('ROLE_USER'), ('ROLE_ADMIN');
+
+    INSERT INTO users (username, password, email)
+    VALUES
+        ('user', '$2a$10$d9SaYo0LnMh2zp3rhuVTqOIGRnBy3VSMxnXpCopIPvBlMaxtoWBOu', 'user@gmail.com'),
+        ('admin', '$2a$10$d9SaYo0LnMh2zp3rhuVTqOIGRnBy3VSMxnXpCopIPvBlMaxtoWBOu', 'admin@gmail.com');
+
+    INSERT INTO users_roles (user_id, role_id)
+    VALUES
+        (1, 1),
+        (2, 1),
+        (2, 2);
 
 
 /*DROP TABLE  consumers;

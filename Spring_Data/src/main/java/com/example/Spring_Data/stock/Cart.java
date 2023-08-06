@@ -3,11 +3,11 @@ package com.example.Spring_Data.stock;
 import com.example.Spring_Data.Converter.ProductConverter;
 import com.example.Spring_Data.Dto.ProductDto;
 import com.example.Spring_Data.repository.ProductRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
