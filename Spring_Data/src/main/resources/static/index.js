@@ -1,8 +1,13 @@
-angular.module('app', []).controller('productController', function ($scope, $http) {
+angular.module('app', ['ngStorage']).controller('productController', function ($scope, $rootScope, $http, $localStorage) {
     const contextPath = 'http://localhost:8080/store/api/v1';
+
+    if ($localStorage.webMarketUser) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.webMarketUser.token;
+    }
+
     $scope.loadProducts = function (pageIndex = 1) {
         $http({
-            url: contextPath + '/all_products',
+            url: contextPath + '/products',
             method: 'GET',
             params: {
                 part_title: $scope.filter ? $scope.filter.part_title : null,
@@ -16,9 +21,10 @@ angular.module('app', []).controller('productController', function ($scope, $htt
             $scope.filter.part_title = null;
         });
     };
+
     $scope.deleteProduct = function (productId) {
         $http({
-            url: contextPath + '/all_products',
+            url: contextPath + '/products',
             method: 'DELETE',
             params: {
                 id: productId,
@@ -27,6 +33,7 @@ angular.module('app', []).controller('productController', function ($scope, $htt
             $scope.loadProducts();
         });
     }
+
     $scope.changeCost = function (productId, delta) {
         $http({
             url: contextPath + '/products/change_cost',
@@ -39,8 +46,9 @@ angular.module('app', []).controller('productController', function ($scope, $htt
             $scope.loadProducts();
         });
     }
+
     $scope.addProduct = function (product) {
-        $http.post(contextPath + '/all_products', product).then(function (response) {
+        $http.post(contextPath + '/products', product).then(function (response) {
             $scope.product = null;
             $scope.loadProducts();
         });
@@ -73,6 +81,43 @@ angular.module('app', []).controller('productController', function ($scope, $htt
             $scope.loadCart();
         });
     }
+
+    $scope.tryToAuth = function () {
+        $http.post('http://localhost:8080/store/auth', $scope.user)
+            .then(function successCallback(response) {
+                if (response.data.token) {
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $localStorage.webMarketUser = {username: $scope.user.username, token: response.data.token};
+
+                    $scope.user.username = null;
+                    $scope.user.password = null;
+                }
+            }, function errorCallback(response) {
+            });
+    };
+
+    $scope.tryToLogout = function () {
+        $scope.clearUser();
+        if ($scope.user.username) {
+            $scope.user.username = null;
+        }
+        if ($scope.user.password) {
+            $scope.user.password = null;
+        }
+    };
+
+    $scope.clearUser = function () {
+        delete $localStorage.webMarketUser;
+        $http.defaults.headers.common.Authorization = '';
+    };
+
+    $rootScope.isUserLoggedIn = function () {
+        if ($localStorage.webMarketUser) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     $scope.loadProducts();
     $scope.loadCart();
